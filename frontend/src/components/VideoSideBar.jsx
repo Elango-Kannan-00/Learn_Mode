@@ -14,7 +14,7 @@ function VideoSideBar() {
   }
 
   return (
-    <div className="flex h-full flex-col p-4 bg-gray-50 dark:bg-gray-900">
+    <div className="flex h-full flex-col p-4 bg-gray-50 dark:bg-gray-900 md:pt-20">
       <div className="mb-4 flex items-center border-b border-gray-200 pb-4 dark:border-gray-700">
         <button
           className="mr-4 rounded-full p-2 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
