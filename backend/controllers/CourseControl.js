@@ -41,9 +41,9 @@ const GetAllCourses = async (req, res) => {
   }
 };
 
-const GetCourseById = async (req, res) => {
+const GetCourseByName = async (req, res) => {
   try {
-    const course = await Course.findById(req.params.id).populate('video');
+    const course = await Course.find(req.query.name).populate('video');
     console.log(course);
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
@@ -55,5 +55,5 @@ const GetCourseById = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
-export { AddCourse, GetAllCourses, GetCourseById };
+export { AddCourse, GetAllCourses, GetCourseByName };
 

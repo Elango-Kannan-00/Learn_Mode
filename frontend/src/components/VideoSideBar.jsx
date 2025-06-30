@@ -1,16 +1,49 @@
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { data } from '../data';
+import { useEffect, useState } from 'react';
+
+async function fetchVideoData(courseName) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/video/getvideo/${courseName}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to fetch video data');
+    }
+    console.log("Fetched video data:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching video data:", error);
+    return [];
+  }
+}
 
 function VideoSideBar() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const courseName = searchParams.get('name');
 
-  const course = data.find(course => { 
-    return course.name === courseName});
+  useEffect(() => {
+    async function loadData() {
+      setIsLoading(true);
+      const videoData = await fetchVideoData(courseName);
+      setData(videoData);
+      setIsLoading(false);
+    }
+    loadData();
+  }, [courseName]);
 
-  if (!course) {
-    return <div className="text-white">Course not found</div>;
+  if (isLoading) {
+    return <div className="text-gray-800 dark:text-white p-4">Loading videos...</div>;
+  }
+
+  if (data.length === 0) {
+    return <div className="text-gray-800 dark:text-white p-4">No videos found for this course.</div>;
   }
 
   return (
@@ -27,16 +60,20 @@ function VideoSideBar() {
         <h1 className="truncate text-xl font-bold text-gray-800 dark:text-white">{courseName}</h1>
       </div>
       <ul className="w-full list-none space-y-2 p-0 m-0">
-        {course.courses.map((video)=>{ 
-           return(
-            <li key={video.id} className="flex items-center justify-between p-2 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow">
-              <div className="flex flex-col">
-                <Link to={`/videos?name=${course.name}&id=${video.id}`} className="text-gray-900 dark:text-white font-semibold hover:underline">{video.title}</Link>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">{video.description}</p>
-              </div>
-            </li>
-           )
-        })} 
+        {data.map((video) => (
+          <li key={video.videoId} className="flex items-center justify-between p-2 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow">
+            <div className="flex flex-col">
+              {/* Use courseName or video.topic as needed */}
+              <Link
+                to={`/videos?name=${courseName}&id=${video.videoId}`}
+                className="text-gray-900 dark:text-white font-semibold hover:underline"
+              >
+                {video.title}
+              </Link>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">{video.description}</p>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );

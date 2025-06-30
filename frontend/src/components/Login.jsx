@@ -37,7 +37,8 @@ function Login() {
       console.log("Response status:", response.status); 
       if (response.ok) {
         const data = await response.json();
-        console.log("Login successful", data);
+       // console.log("Login successful", data);
+        console.log("Setting user:", data.user);
         setUser(data.user); 
         navigate('/'); // <-- Now works correctly
       } else {

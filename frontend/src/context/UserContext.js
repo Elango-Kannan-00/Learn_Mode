@@ -1,8 +1,11 @@
 import { createContext  } from 'react';
 
-export const UserContext = createContext({
-  user:'',
-  email:'',
-  setUser:() =>{}
-});
+
+const state = { 
+  username: '',
+  email:''
+}
+export const UserContext = createContext(state);
+console.log('UserContext', UserContext.state);
+
 

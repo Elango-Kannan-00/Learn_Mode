@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FaCode, FaDatabase, FaNetworkWired, FaProjectDiagram } from 'react-icons/fa';
 
-function SideBarCourse({ title }) {
+function SideBarCourse({ title, courseData }) {
   const courses = [
     { name: 'Web Development', path: 'Web%20Development', icon: <FaCode /> },
     { name: 'DSA', path: 'dsa', icon: <FaProjectDiagram /> },
@@ -16,10 +16,10 @@ function SideBarCourse({ title }) {
       </div>
       <nav className="flex-1">
         <ul className="space-y-2">
-          {courses.map((course) => (
-            <li key={course.path}>
+          {courseData.map((course) => (
+            <li key={course.courseId}>
               <Link
-                to={`/videos?name=${course.path}`}
+                to={`/videos?name=${course.name}`}
                 className="flex items-center gap-3 rounded-lg px-3 py-3 text-gray-600 transition-all duration-200 hover:bg-blue-100 hover:text-blue-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-blue-300"
               >
                 <span className="text-lg">{course.icon}</span>
