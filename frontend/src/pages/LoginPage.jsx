@@ -1,7 +1,6 @@
 import Login from '../components/Login';
 import { FaBook } from 'react-icons/fa';
 
-
 function LoginPage() {
   // Enhanced: More attractive, animated, and modern look
   return (
