@@ -1,1 +1,45 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+.animate-fade-in {
+  animation: fadeIn 1.2s ease;
+}
+
+.animate-slide-in {
+  animation: slideIn 1.2s cubic-bezier(.4,2,.6,1);
+}
+
+.animate-spin-slow {
+  animation: spin 6s linear infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 3s infinite alternate;
+}
+
+.animate-bounce-slow2 {
+  animation: bounce2 4s infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(30px); }
+}
+
+@keyframes bounce2 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
