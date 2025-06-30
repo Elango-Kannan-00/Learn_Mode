@@ -4,6 +4,8 @@ import cors from 'cors';
 import { connectDB } from './db/connect.js';
 
 import userRoutes from './routes/Userroute.js';
+import videoRoutes from './routes/Videoroute.js';
+import courseRoutes from './routes/Courseroute.js';
 
 dotenv.config({
  path:'/.env'
@@ -16,6 +18,8 @@ backend.use(cors());
 backend.use(express.json());
 
 backend.use('/api/user', userRoutes);
+backend.use('/api/video', videoRoutes);
+backend.use('/api/course', courseRoutes);
 
 connectDB(process.env.MONGO_URL)
   .then(() => console.log('Database connected successfully'))
