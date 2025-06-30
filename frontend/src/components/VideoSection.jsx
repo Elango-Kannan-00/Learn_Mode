@@ -4,18 +4,19 @@ function VideoSection({ src }) {
 
 
   return (
-    <div className="flex flex-col items-center justify-center m-2 mx-25 w-4/5 bg-gray-100 p-4 rounded-xl shadow-md border border-gray-300">
-  <h1 className="text-2xl font-bold mb-4">Video Section</h1>
-  <div className="relative w-full max-w-2xl aspect-video">
-    <iframe
-      className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg border border-gray-300 mx-w-full mx-h-full p-5"
-      src={src}
-      title="YouTube video player"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      referrerPolicy="strict-origin-when-cross-origin"
-    />
-  </div>
-</div>
+    <div className="mx-auto w-full max-w-4xl rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800">
+      <h1 className="mb-4 text-3xl font-bold text-gray-800 dark:text-white">Video Lesson</h1>
+      <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-200 shadow-inner dark:border-gray-700">
+        <iframe
+          className="absolute top-0 left-0 h-full w-full"
+          src={src}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </div>
   )
 
 }
