@@ -9,7 +9,10 @@ async function fetchVideoData(courseName, id) {
   try {
     const response = await fetch(`http://localhost:3000/api/video/getvideo/${courseName}/${id}`, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `${localStorage.getItem('token')}`
+      },
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data.message || 'Failed to fetch video data');
@@ -87,8 +90,6 @@ function VideoPage() {
             </div>
             {isLoading ? (
               <div className="text-center py-8">Loading...</div>
-            ) : error ? (
-              <div className="text-red-500 text-center py-8">{error}</div>
             ) : data ? (
               <VideoSection key={data.id} src={data.src} courseName={courseName} />
             ) : (

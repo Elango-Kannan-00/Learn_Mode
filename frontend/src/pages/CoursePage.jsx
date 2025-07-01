@@ -6,8 +6,15 @@ import { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 
 async function fetchCourses() {
+  console.log(`Bearing token: ${localStorage.getItem('token')}`); 
   try {
-    const response = await fetch('http://localhost:3000/api/course/getcourse');
+    const response = await fetch('http://localhost:3000/api/course/getcourse',{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${localStorage.getItem('token')}` 
+      }
+    });
     const data = await response.json();
     if (!response.ok) {
       throw new Error('Network response was not ok');

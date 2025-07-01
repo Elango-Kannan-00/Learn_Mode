@@ -50,6 +50,9 @@ function Navbar() {
                 Sign Up
               </button>
             </Link>
+            <button className="mt-2 w-full rounded-lg bg-gray-700 py-3 font-bold text-white shadow-md transition-all duration-300 hover:bg-gray-600">
+              Logout 
+            </button>
             <p className="mt-4 text-xs text-gray-500">&copy; 2025 Learn Mode</p>
           </div>
         </div>
