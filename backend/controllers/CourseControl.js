@@ -7,17 +7,16 @@ const AddCourse = async (req, res) => {
     if (!courseId || !name || !description) {
       return res.status(400).json({ message: 'All fields are required' });
     }
-
-    const videocontent = await Video.findOne({ topic: name });
-    if (!videocontent) {
-      return res.status(404).json({ message: 'Video not found for the specified topic' });
+    const existingCourse = await Course.findOne({
+      courseId
+    });
+    if (existingCourse) {
+      return res.status(400).json({ message: 'Course already exists' });
     }
-
     const newCourse = new Course({
       courseId,
       name,
       description,
-      video: videocontent._id
     });
 
     await newCourse.save();

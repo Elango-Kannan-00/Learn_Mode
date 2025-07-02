@@ -57,8 +57,7 @@ const LoginUser = async (req, res) => {
 
 const LogoutUser = async (req, res) => {
   try {
-    res.removeHeader('Authorization');
-    res.status(200).json({ message: 'User logged out successfully' });
+    res.status(200).json({ message: 'User logged out successfully',success: true });
   } catch (error) {
     console.error('Error logging out user:', error);
     res.status(500).json({ message: 'Internal server error' });
