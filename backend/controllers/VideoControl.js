@@ -14,7 +14,9 @@ const AddVideo = async (req, res) => {
 
     await newVideo.save();
 
-       res.status(201).json(response);
+       res.status(201).json({
+      message: 'Video added successfully',
+    });
 
 
   } catch (err) {

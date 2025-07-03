@@ -39,6 +39,9 @@ function Login() {
         const data = await response.json();
        // console.log("Login successful", data);
         console.log("Setting user:", data.user);
+        const token = data.token; 
+        localStorage.setItem('token', token); 
+        console.log("Token stored in localStorage:", token);
         setUser(data.user); 
         navigate('/'); // <-- Now works correctly
       } else {
@@ -67,7 +70,7 @@ function Login() {
             type="text"
             placeholder="Enter your username"
             className="rounded-lg border-2 border-blue-200 bg-blue-50 p-3 text-gray-800 placeholder-gray-400 transition-all duration-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200/50 outline-none"
-            value={formState.email}
+            value={formState.username}
             onChange={handleInputChange}
           />
         </div>

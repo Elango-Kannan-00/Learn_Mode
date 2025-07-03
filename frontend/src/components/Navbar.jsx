@@ -1,14 +1,40 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaBook, FaBars, FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
 
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   const navItems = [
     { name: 'Home', path: '/', icon: <FaHome /> },
     { name: 'Courses', path: '/courses', icon: <FaBook /> },
   ];
+const handleLogout = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/api/user/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({}),
+    });
+
+    const data = await response.json();
+
+    if (data.message === 'User logged out successfully') {
+      console.log('Logout successful');
+      localStorage.removeItem('token');
+      navigate('/login');
+    } else {
+      console.error('Logout failed:', data.message);
+    }
+  } catch (error) {
+    console.error('Error during logout:', error);
+  }
+};
+
 
   return (
     <>
@@ -50,6 +76,10 @@ function Navbar() {
                 Sign Up
               </button>
             </Link>
+            <button className="mt-2 w-full rounded-lg bg-gray-700 py-3 font-bold text-white shadow-md transition-all duration-300 hover:bg-gray-600"
+              onClick={handleLogout}>
+              Logout 
+            </button>
             <p className="mt-4 text-xs text-gray-500">&copy; 2025 Learn Mode</p>
           </div>
         </div>
