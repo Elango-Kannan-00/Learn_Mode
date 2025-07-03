@@ -27,27 +27,29 @@
    **Project Structure:**
      ``` bash
      Learn_Mode/
-     ├──backend
-     │   └──controllers
+     ├──backend/
+     │   └──controllers/
      │   │   └──CourseControll.js
      │   │   └──UserControl.js
      │   │   └──VideoControl.js
-     │   └──db
+     │   └──db/
      │   │   └──connect.js
-     │   └──model
+     │   └──model/
      │   │   └──Course.js
      │   │   └──User.js
      │   │   └──Video.js
-     │   └──routes
-     │        └──Courseroute.js
-     │        └──Userroute.js
-     │        └──Videoroute.js
-     │  
-     │
-     │
-     │
-     │
-     ├──frontend
+     │   └──routes/
+     │       └──Courseroute.js
+     │       └──Userroute.js
+     │       └──Videoroute.js
+     │       └── ...
+     ├──frontend/
+     │    └──src/
+     │       └──components/
+     │       └──index.html
+     │       └──tailwind.config.js
+     │       └──vite.config.js
      ├──model
+     ```
      
   
