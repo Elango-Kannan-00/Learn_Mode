@@ -23,4 +23,10 @@
      - **dotenv:** Load environment variables.
      - **jsonwebtoken:** For authentication (JWT).
      - **bcryptjs:** For password hashing.
+       
+   **Project Structure:**
+     ``` bash
+     Learn_Mode/
+     ├──frontend
+     
   
